@@ -17,6 +17,10 @@ function App() {
       .catch((error) => console.error("Fetch error:", error));
   }, []);
 
+  const addPlayer = (newPlayer) => {
+    setPlayers((prevPlayers) => [...prevPlayers, newPlayer]);
+  };
+
   return (
     <div className="App">
       <nav>
@@ -26,10 +30,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home players={players} />} />
-        <Route
-          path="/SignUp"
-          element={<SignUp players={players} setPlayers={setPlayers} />}
-        />
+        <Route path="/SignUp" element={<SignUp addPlayer={addPlayer} />} />
         <Route
           path="/players/:id"
           element={<PlayerDetail players={players} setPlayers={setPlayers} />}
